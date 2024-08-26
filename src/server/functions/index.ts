@@ -14,7 +14,7 @@ const db = getFirestore(firebase);
 export async function updateDocument(collectionName: string, data: any) {
   try {
     const docRef = doc(collection(db, collectionName), "uniqueDoc");
-    await setDoc(docRef, data, { merge: true });
+    await setDoc(docRef, data);
     return { success: true, message: "Document updated successfully" };
   } catch (error) {
     console.error("Error updating document: ", error);
