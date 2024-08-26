@@ -23,7 +23,12 @@ export async function updateDocument(collectionName: string, data: any) {
 }
 
 export async function getDocument(collectionName: string) {
-  const doc: DocumentData[] = [];
   const querySnapshot = await getDocs(collection(db, collectionName));
-  return querySnapshot.docs.map((doc) => doc.data());
+
+  if (!querySnapshot.empty) {
+    const docData = querySnapshot.docs[0].data();
+    return docData;
+  } else {
+    return null;
+  }
 }
